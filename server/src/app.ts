@@ -18,9 +18,9 @@ app.use(cookieParser())
 app.use(morgan("dev"))
 
 
-
 // Routes
 app.use("/api/v1/product", productRouter)
+
 
 // Error handling
 app.use(notFound)
