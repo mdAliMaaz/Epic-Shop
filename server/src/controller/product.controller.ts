@@ -41,7 +41,53 @@ export const createProduct = asyncHandler(async (req: Request, res: Response, ne
     }
 })
 
+export const getSingleProduct = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+
+    const { id } = req.params;
+
+    console.log(id)
+
+    const product = await Product.findById(id);
+
+    if (!product) {
+        return next(new ErrorHandelr(404, `Product with Id ${id} not found`))
+    }
+    else {
+        res.status(200).json(product)
+    }
+})
+
+
+export const updateProduct = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+
+    const { id } = req.params;
+
+    const updateProduct = await Product.findByIdAndUpdate(id, { ...req.body }, { new: true })
+
+    if (!updateProduct) {
+        return next(new ErrorHandelr(401, "Invalid Input"))
+    } else {
+
+        res.status(200).json(new ApiResponse(true, "Product Updated Successful", updateProduct))
+    }
+
+})
+
+
+export const deleteProduct = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+
+    const { id } = req.params;
+
+    const deletedProduct = await Product.findByIdAndDelete(id);
+
+    if (!deleteProduct) {
+        return next(new ErrorHandelr(401, "Invalid Input"))
+    }
+    else {
+        res.status(200).json(new ApiResponse(true, "Product deleted Succssfullly"))
+    }
+
+})
+
 // TODO
-//  Update product
-//  Get Single product
 //  Delete product

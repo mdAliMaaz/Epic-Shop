@@ -1,7 +1,7 @@
 class ApiResponse {
     data?: any;
-    message: string;
-    sucess: boolean
+    message?: string;
+    sucess?: boolean
 
     constructor(sucess: boolean, message: string, data?: any) {
         this.message = message;
