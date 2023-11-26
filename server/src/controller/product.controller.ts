@@ -9,7 +9,7 @@ import Product from "../model/product.model";
 // Get Products
 export const getProducts = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
 
-    const products = await Product.find();
+    const products = await Product.find().lean();
 
     if (!products.length) {
         return next(new ErrorHandelr(404, "Products not found"))
