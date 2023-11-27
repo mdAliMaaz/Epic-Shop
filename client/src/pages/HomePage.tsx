@@ -1,7 +1,5 @@
-import { products } from '../dummy';
 import { ProductCard } from '../components';
 import { useGetProductsQuery } from '../redux/api/productApi';
-import { Productdetails } from '../types';
 
 const HomePage = () => {
 	const { data, isError, isLoading } = useGetProductsQuery();
