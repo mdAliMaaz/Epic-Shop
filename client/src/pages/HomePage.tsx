@@ -1,15 +1,14 @@
-import { ProductCard } from '../components';
+import { Loading, ProductCard } from '../components';
 import { useGetProductsQuery } from '../redux/api/productApi';
 
 const HomePage = () => {
 	const { data, isError, isLoading } = useGetProductsQuery();
 
-	if (isLoading) {
-		return (
-			<div>
-				<h1>Loading</h1>
-			</div>
-		);
+	if (isLoading && !data) {
+		return <Loading />;
+	}
+	if (!data?.length) {
+		<h1>Product Not Found</h1>;
 	}
 
 	return (

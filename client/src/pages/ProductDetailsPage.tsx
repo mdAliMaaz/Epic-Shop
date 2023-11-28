@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Rating } from '../components';
+import { Loading, Rating } from '../components';
 import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { useState } from 'react';
 
@@ -27,9 +27,11 @@ const ProductDetails = () => {
 	};
 
 	if (isLoading && !data) {
-		return <h1>Loading</h1>;
+		return <Loading />;
 	}
-
+	if (!data) {
+		<h1>Product Not Found</h1>;
+	}
 	return (
 		<>
 			{data && (
